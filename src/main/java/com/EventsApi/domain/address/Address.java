@@ -26,8 +26,8 @@ public class Address {
     @GeneratedValue
     private UUID id;
 
-    private String street;
-    private String UF;
+    private String city;
+    private String uf;
 
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
