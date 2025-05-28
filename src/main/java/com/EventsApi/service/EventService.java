@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.EventsApi.domain.event.Event;
 import com.EventsApi.domain.event.EventRequestDTO;
+import com.EventsApi.repositories.EventRepository;
 import com.amazonaws.services.s3.AmazonS3;
 
 @Service
@@ -23,6 +24,9 @@ public class EventService {
 
     @Value("${aws.bucket.name}")
     private String bucketName;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     public Event createEvent(EventRequestDTO data) {
         String imageUrl = null;
@@ -36,7 +40,9 @@ public class EventService {
         newEvent.setDate(new Date(data.date()));
         newEvent.setEventUrl(data.eventUrl());
         newEvent.setImgUrl(imageUrl);
+        newEvent.setRemote(data.remote());
 
+        eventRepository.save(newEvent);
         return newEvent;
     }
 
