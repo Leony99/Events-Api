@@ -1,4 +1,4 @@
-package com.EventsApi.domain.coupon;
+package com.EventsApi.model.coupon;
 
 public record CouponRequestDTO(
     String code, 

@@ -1,9 +1,8 @@
-package com.EventsApi.domain.coupon;
+package com.EventsApi.model.address;
 
-import java.util.Date;
 import java.util.UUID;
 
-import com.EventsApi.domain.event.Event;
+import com.EventsApi.model.event.Event;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,20 +15,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "coupon")
+@Table(name = "address")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Coupon {
+public class Address {
     @Id
     @GeneratedValue
     private UUID id;
 
-    private String code;
-    private Integer discount;
-    private Date valid;
+    private String city;
+    private String uf;
 
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)

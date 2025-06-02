@@ -1,4 +1,4 @@
-package com.EventsApi.domain.event;
+package com.EventsApi.model.event;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -7,7 +7,7 @@ public record EventRequestDTO(
     String description, 
     Long date, 
     String city, 
-    String state,
+    String uf,
     Boolean remote,
     String eventUrl,
     MultipartFile image) {

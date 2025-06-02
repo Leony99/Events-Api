@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.EventsApi.domain.coupon.Coupon;
-import com.EventsApi.domain.coupon.CouponRequestDTO;
+import com.EventsApi.model.coupon.Coupon;
+import com.EventsApi.model.coupon.CouponRequestDTO;
 import com.EventsApi.service.CouponService;
 
 @RestController
