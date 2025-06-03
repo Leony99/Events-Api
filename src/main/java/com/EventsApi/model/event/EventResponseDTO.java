@@ -9,7 +9,7 @@ public record EventResponseDTO(
     String description, 
     Date date, 
     String city, 
-    String state,
+    String uf,
     Boolean remote,
     String eventUrl,
     String imgUrl) {

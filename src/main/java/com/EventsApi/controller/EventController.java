@@ -1,10 +1,8 @@
 package com.EventsApi.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +13,14 @@ import com.EventsApi.model.event.Event;
 import com.EventsApi.model.event.EventRequestDTO;
 import com.EventsApi.model.event.EventResponseDTO;
 import com.EventsApi.service.EventService;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
-
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/events")
 public class EventController {
     @Autowired
@@ -54,10 +54,8 @@ public class EventController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String city,
-            @RequestParam(required = false) String uf,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date startDate,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date endDate) {
-        List<EventResponseDTO> filteredEvents = eventService.getFilteredEvents(page, size, title, city, uf, startDate, endDate);
+            @RequestParam(required = false) String uf) {
+        List<EventResponseDTO> filteredEvents = eventService.getFilteredEvents(page, size, title, city, uf);
         return ResponseEntity.ok(filteredEvents);
     }
 }
