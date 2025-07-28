@@ -21,7 +21,7 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
                 "(COALESCE(:city, '') = '' OR a.city LIKE %:city%) AND " +
                 "(COALESCE(:uf, '') = '' OR a.uf LIKE %:uf%)" + 
                 "ORDER BY e.date ASC")
-        Page<Event> findFilteredEvents(@Param("currentDate") Date currentDate,
+        Page<Event> findFilteredUpcomingEvents(@Param("currentDate") Date currentDate,
                 @Param("title") String title,
                 @Param("city") String city,
                 @Param("uf") String uf,

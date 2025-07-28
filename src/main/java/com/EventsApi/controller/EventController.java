@@ -1,6 +1,7 @@
 package com.EventsApi.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.EventsApi.model.event.Event;
+import com.EventsApi.model.event.EventDetailsDTO;
 import com.EventsApi.model.event.EventRequestDTO;
 import com.EventsApi.model.event.EventResponseDTO;
 import com.EventsApi.service.EventService;
@@ -18,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequiredArgsConstructor
@@ -55,7 +58,14 @@ public class EventController {
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String uf) {
-        List<EventResponseDTO> filteredEvents = eventService.getFilteredEvents(page, size, title, city, uf);
+        List<EventResponseDTO> filteredEvents = eventService.getFilteredUpcomingEvents(page, size, title, city, uf);
         return ResponseEntity.ok(filteredEvents);
     }
+
+    @GetMapping("/{eventId}")
+    public ResponseEntity<EventDetailsDTO> getEventDetails(@PathVariable UUID eventId) {
+        EventDetailsDTO eventDetails = eventService.getEventDetails(eventId);
+        return ResponseEntity.ok(eventDetails);
+    }
+    
 }
